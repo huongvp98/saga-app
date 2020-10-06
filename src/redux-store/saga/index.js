@@ -1,15 +1,15 @@
-import { fetchUsers as _fetchUsers } from "../../data-access/book-provider";
-import * as actions from "../action";
+import bookProvider from "../../data-access/book-provider";
+import bookAction from "../action/book";
 import types from "../../constant";
-import { call, put, takeEvery } from "redux-saga/effects";
+import { call, put, takeLatest } from "redux-saga/effects";
 function* fetchUsers() {
   try {
-    const res = yield call(_fetchUsers);
-    yield put(actions.getUsersSucceed(res));
+    const res = yield call(bookProvider.search);
+    yield put(bookAction.getUsersSucceed(res.data));
   } catch (error) {
-    yield put(actions.getUsersFailed(error));
+    yield put(bookAction.getUsersFailed(error));
   }
 }
 export default function* userSaga() {
-  yield takeEvery(types.GET_USER_REQUESTED, fetchUsers);
+  yield takeLatest(types.GET_USER_REQUESTED, fetchUsers);
 }

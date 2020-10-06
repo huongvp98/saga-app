@@ -1,22 +1,29 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import {
-  getUsersRequested,
-  getUsersSucceed,
-  getUsersFailed,
-} from "./redux-store/action";
-// import { fetchUsers } from "./data-access/book-provider";
+import bookAction from "./redux-store/action/book";
 function Main(props) {
   const { getUsersRequested, user } = props;
   useEffect(() => {
     getUsersRequested();
   }, [getUsersRequested]);
-  return <div className="App">{user?.name}</div>;
+  return (
+    <div className="App">
+      {user.map((item) => {
+        return (
+          <div key={item.id}>
+            {item.name} : {item.author}
+          </div>
+        );
+      })}
+    </div>
+  );
 }
-const mapState = (state) => ({
-  user: state.user,
-});
+const mapState = (state) => {
+  return {
+    user: state.bookReducer.user,
+  };
+};
 const mapDispatch = {
-  getUsersRequested,
+  getUsersRequested: bookAction.getUsersRequested,
 };
 export default connect(mapState, mapDispatch)(Main);
