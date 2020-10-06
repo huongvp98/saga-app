@@ -4,7 +4,7 @@ export default {
   search(params = {}) {
     const { page, limit, type, name } = params;
     let url = strings.api.book;
-    if (page) {
+    if (page !== undefined && page !== null) {
       url += "?page=" + page;
     }
     if (limit) {
@@ -39,11 +39,3 @@ export default {
     });
   },
 };
-
-// export const fetchUsers = () => {
-//   return new Promise((resolve) => {
-//     setTimeout(() => {
-//       resolve({ name: "TestSaga" });
-//     }, 1000);
-//   });
-// };

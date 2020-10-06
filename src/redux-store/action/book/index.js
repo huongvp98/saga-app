@@ -18,8 +18,15 @@ const getUsersFailed = (error) => {
     },
   };
 };
+const updateState = (payload) => {
+  return {
+    type: types.UPDATE_USER,
+    payload: payload,
+  };
+};
 export default {
   getUsersRequested,
   getUsersSucceed,
   getUsersFailed,
+  updateState,
 };

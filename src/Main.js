@@ -2,10 +2,11 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import bookAction from "@action/book";
 function Main(props) {
-  const { getUsersRequested, user } = props;
+  const { getUsersRequested, user, updateState } = props;
   useEffect(() => {
+    updateState({ page: 1, limit: 10 });
     getUsersRequested();
-  }, [getUsersRequested]);
+  }, [getUsersRequested, updateState]);
   return (
     <div className="App">
       {user.map((item) => {
@@ -25,5 +26,6 @@ const mapState = (state) => {
 };
 const mapDispatch = {
   getUsersRequested: bookAction.getUsersRequested,
+  updateState: bookAction.updateState,
 };
 export default connect(mapState, mapDispatch)(Main);

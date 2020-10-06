@@ -1,7 +1,6 @@
 const path = require("path");
 
 module.exports = function override(config) {
-  debugger;
   config.resolve = {
     ...config.resolve,
     alias: {
