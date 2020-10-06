@@ -1,6 +1,6 @@
-import bookProvider from "../../data-access/book-provider";
-import bookAction from "../action/book";
-import types from "../../constant";
+import bookProvider from "@data-access/book-provider";
+import bookAction from "@action/book";
+import types from "@constant";
 import { call, put, takeLatest } from "redux-saga/effects";
 function* fetchUsers() {
   try {

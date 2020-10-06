@@ -1,6 +1,6 @@
 import React, { useEffect } from "react";
 import { connect } from "react-redux";
-import bookAction from "./redux-store/action/book";
+import bookAction from "@action/book";
 function Main(props) {
   const { getUsersRequested, user } = props;
   useEffect(() => {

@@ -1,4 +1,4 @@
-import strings from "../resouces/strings";
+import strings from "@resources/strings";
 import Axios from "axios";
 export default {
   search(params = {}) {

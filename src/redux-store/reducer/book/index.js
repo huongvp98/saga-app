@@ -1,4 +1,4 @@
-import types from "../../../constant";
+import types from "@constant";
 
 const initialState = {
   loading: false,

@@ -1,4 +1,4 @@
-import types from "../../../constant";
+import types from "@constant";
 const getUsersRequested = () => {
   return {
     type: types.GET_USER_REQUESTED,
