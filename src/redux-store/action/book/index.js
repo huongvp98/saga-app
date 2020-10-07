@@ -1,18 +1,19 @@
-import types from "@constant";
-const getUsersRequested = () => {
+import type from "@constant";
+const types = type.book;
+const getRequested = () => {
   return {
-    type: types.GET_USER_REQUESTED,
+    type: types.GET_BOOK_REQUESTED,
   };
 };
-const getUsersSucceed = (user) => {
+const getSucceed = (payload) => {
   return {
-    type: types.GET_USER_SUCCEED,
-    payload: user,
+    type: types.GET_BOOK_SUCCEED,
+    payload: payload,
   };
 };
-const getUsersFailed = (error) => {
+const getFailed = (error) => {
   return {
-    type: types.GET_USER_FAILED,
+    type: types.GET_BOOK_FAILED,
     payload: {
       error,
     },
@@ -20,13 +21,13 @@ const getUsersFailed = (error) => {
 };
 const updateState = (payload) => {
   return {
-    type: types.UPDATE_USER,
+    type: types.UPDATE_BOOK,
     payload: payload,
   };
 };
 export default {
-  getUsersRequested,
-  getUsersSucceed,
-  getUsersFailed,
+  getRequested,
+  getSucceed,
+  getFailed,
   updateState,
 };

@@ -2,14 +2,14 @@ import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import bookAction from "@action/book";
 function Main(props) {
-  const { getUsersRequested, user, updateState } = props;
+  const { getBooksRequested, listBook, updateBookState } = props;
   useEffect(() => {
-    updateState({ page: 1, limit: 10 });
-    getUsersRequested();
-  }, [getUsersRequested, updateState]);
+    updateBookState({ page: 1, limit: 10 });
+    getBooksRequested();
+  }, [getBooksRequested, updateBookState]);
   return (
     <div className="App">
-      {user.map((item) => {
+      {listBook.map((item) => {
         return (
           <div key={item.id}>
             {item.name} : {item.author}
@@ -21,11 +21,11 @@ function Main(props) {
 }
 const mapState = (state) => {
   return {
-    user: state.bookReducer.user,
+    listBook: state.bookReducer.listBook,
   };
 };
 const mapDispatch = {
-  getUsersRequested: bookAction.getUsersRequested,
-  updateState: bookAction.updateState,
+  getBooksRequested: bookAction.getRequested,
+  updateBookState: bookAction.updateState,
 };
 export default connect(mapState, mapDispatch)(Main);

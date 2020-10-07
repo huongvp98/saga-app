@@ -1,34 +1,34 @@
-import types from "@constant";
-
+import type from "@constant";
+const types = type.book;
 const initialState = {
   loading: false,
   error: null,
-  user: [],
+  listBook: [],
 };
 export default (state = initialState, action) => {
   switch (action.type) {
-    case types.GET_USER_REQUESTED:
+    case types.GET_BOOK_REQUESTED:
       return {
         ...state,
         loading: true,
-        user: [],
+        listBook: [],
         error: null,
       };
-    case types.GET_USER_SUCCEED:
+    case types.GET_BOOK_SUCCEED:
       return {
         ...state,
         loading: false,
-        user: action.payload,
+        listBook: action.payload,
         error: null,
       };
-    case types.GET_USER_FAILED:
+    case types.GET_BOOK_FAILED:
       return {
         ...state,
         loading: false,
-        user: [],
+        listBook: [],
         error: action.payload.error,
       };
-    case types.UPDATE_USER:
+    case types.UPDATE_BOOK:
       return {
         ...state,
         loading: false,
