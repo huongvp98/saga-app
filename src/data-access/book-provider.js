@@ -38,4 +38,17 @@ export default {
         });
     });
   },
+  createOrEdit(param, id) {
+    let url = strings.api.book;
+    if (id) {
+    } else {
+      return new Promise((resolve, reject) => {
+        Axios.post(url, param)
+          .then((res) => {
+            resolve(res);
+          })
+          .catch((error) => reject(error));
+      });
+    }
+  },
 };

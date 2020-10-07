@@ -35,6 +35,13 @@ export default (state = initialState, action) => {
         error: null,
         ...action.payload,
       };
+    case types.CREATE_OR_EDIT_BOOK:
+      return {
+        ...state,
+        loading: true,
+        error: null,
+        bookInfor: action.payload,
+      };
     default:
       return state;
   }

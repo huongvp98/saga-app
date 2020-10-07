@@ -25,9 +25,16 @@ const updateState = (payload) => {
     payload: payload,
   };
 };
+const createOrEdit = (payload) => {
+  return {
+    type: types.CREATE_OR_EDIT_BOOK,
+    payload: payload,
+  };
+};
 export default {
   getRequested,
   getSucceed,
   getFailed,
   updateState,
+  createOrEdit,
 };

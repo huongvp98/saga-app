@@ -12,6 +12,15 @@ function* fetchBooks() {
     yield put(bookAction.getFailed(error));
   }
 }
+function* createOrEditBook(param) {
+  try {
+    yield call(bookProvider.createOrEdit, param.payload);
+    yield put(bookAction.getRequested());
+  } catch (error) {
+    yield put(bookAction.getFailed(error));
+  }
+}
 export default function* userSaga() {
   yield takeLatest(types.GET_BOOK_REQUESTED, fetchBooks);
+  yield takeLatest(types.CREATE_OR_EDIT_BOOK, createOrEditBook);
 }
