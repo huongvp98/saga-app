@@ -40,7 +40,6 @@ export default (state = initialState, action) => {
         ...state,
         loading: true,
         error: null,
-        bookInfor: action.payload,
       };
     default:
       return state;

@@ -6,6 +6,8 @@ export default {
     let url = strings.api.book;
     if (page !== undefined && page !== null) {
       url += "?page=" + page;
+    } else {
+      url += "?page=" + 1;
     }
     if (limit) {
       url += "&limit=" + limit;

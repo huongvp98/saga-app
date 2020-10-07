@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from "react";
+import React, { useEffect } from "react";
 import { connect } from "react-redux";
 import bookAction from "@action/book";
 import { Button, Form, Input, Select } from "antd";
@@ -7,34 +7,44 @@ import "antd/dist/antd.css";
 const { TextArea } = Input;
 const { Option } = Select;
 function Main(props) {
-  const { getBooksRequested, listBook, updateBookState, createOrEdit } = props;
+  const {
+    getBooksRequested,
+    listBook,
+    updateBookState,
+    createOrEdit,
+    name,
+    description,
+    author,
+    avatar,
+    type,
+  } = props;
   useEffect(() => {
-    updateBookState({ page: 1, limit: 100 });
+    updateBookState({ page: 1, limit: 10 });
     getBooksRequested();
-  }, [getBooksRequested, updateBookState]);
-  const [bookInfor, setBookInfor] = useState({
-    name: "",
-    description: "",
-    author: "",
-    avatar: "",
-    type: "",
-  });
+    updateBookState({
+      name: "",
+      description: "",
+      author: "",
+      avatar: "",
+      type: "",
+    });
+  }, [getBooksRequested, updateBookState, createOrEdit]);
   const updateInfor = (e, action) => {
     switch (action) {
       case "name":
-        setBookInfor({ ...bookInfor, name: e.target.value });
+        updateBookState({ name: e.target.value });
         break;
       case "description":
-        setBookInfor({ ...bookInfor, description: e.target.value });
+        updateBookState({ description: e.target.value });
         break;
       case "author":
-        setBookInfor({ ...bookInfor, author: e.target.value });
+        updateBookState({ author: e.target.value });
         break;
       case "type":
-        setBookInfor({ ...bookInfor, type: e });
+        updateBookState({ type: e });
         break;
       case "avatar":
-        setBookInfor({ ...bookInfor, avatar: e.target.value });
+        updateBookState({ avatar: e.target.value });
         break;
       default:
         break;
@@ -42,14 +52,14 @@ function Main(props) {
   };
   const onSubmit = () => {
     try {
-      createOrEdit(bookInfor);
-      setBookInfor({
-        name: "",
-        description: "",
-        author: "",
-        avatar: "",
-        type: "",
-      });
+      createOrEdit();
+      // setBookInfor({
+      //   name: "",
+      //   description: "",
+      //   author: "",
+      //   avatar: "",
+      //   type: "",
+      // });
     } catch (error) {}
   };
   return (
@@ -57,34 +67,25 @@ function Main(props) {
       <div>
         <Form layout="inline">
           <Form.Item label="Tên sách:">
-            <Input
-              value={bookInfor.name}
-              onChange={(e) => updateInfor(e, "name")}
-            />
+            <Input value={name} onChange={(e) => updateInfor(e, "name")} />
           </Form.Item>
           <Form.Item label="Tác giả">
-            <Input
-              value={bookInfor.author}
-              onChange={(e) => updateInfor(e, "author")}
-            />
+            <Input value={author} onChange={(e) => updateInfor(e, "author")} />
           </Form.Item>
           <Form.Item label="Link ảnh">
-            <Input
-              onChange={(e) => updateInfor(e, "avatar")}
-              value={bookInfor.avatar}
-            />
+            <Input onChange={(e) => updateInfor(e, "avatar")} value={avatar} />
           </Form.Item>
           <Form.Item label="Mô tả">
             <TextArea
               onChange={(e) => updateInfor(e, "description")}
-              value={bookInfor.description}
+              value={description}
             />
           </Form.Item>
           <Form.Item className="Loại sách" style={{ width: 150 }}>
             <Select
               defaultValue=""
               onChange={(e) => updateInfor(e, "type")}
-              value={bookInfor.type}
+              value={type}
             >
               <Option value="">Tất cả</Option>
               {DataConstant.listTypeBook.map((item) => {
@@ -116,6 +117,13 @@ function Main(props) {
 const mapState = (state) => {
   return {
     listBook: state.bookReducer.listBook,
+    name: state.bookReducer.name,
+    description: state.bookReducer.description,
+    author: state.bookReducer.author,
+    avatar: state.bookReducer.avatar,
+    type: state.bookReducer.type,
+    page: state.bookReducer.page,
+    limit: state.bookReducer.limit,
   };
 };
 const mapDispatch = {

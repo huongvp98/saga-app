@@ -12,9 +12,27 @@ function* fetchBooks() {
     yield put(bookAction.getFailed(error));
   }
 }
-function* createOrEditBook(param) {
+function* createOrEditBook() {
+  let { name, author, avatar, description, type } = yield select(
+    (state) => state.bookReducer
+  );
   try {
-    yield call(bookProvider.createOrEdit, param.payload);
+    yield call(bookProvider.createOrEdit, {
+      name,
+      author,
+      avatar,
+      description,
+      type,
+    });
+    yield put(
+      bookAction.updateState({
+        name: "",
+        author: "",
+        avatar: "",
+        description: "",
+        type: "",
+      })
+    );
     yield put(bookAction.getRequested());
   } catch (error) {
     yield put(bookAction.getFailed(error));
