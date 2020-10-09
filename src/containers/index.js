@@ -1,7 +1,7 @@
 import React from "react";
 import SideBar from "@components/SideBar";
 import "./style.scss";
-import { BrowserRouter, Route, Switch } from "react-router-dom";
+import { Route, Switch } from "react-router-dom";
 import Loadable from "react-loadable";
 
 function Loading() {

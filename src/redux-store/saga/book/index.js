@@ -24,6 +24,7 @@ function* createOrEditBook() {
       description,
       type,
     });
+
     yield put(
       bookAction.updateState({
         name: "",
