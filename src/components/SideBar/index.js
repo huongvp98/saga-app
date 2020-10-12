@@ -10,6 +10,9 @@ function index(props) {
         <li>
           <Link to="/create">Create</Link>
         </li>
+        <li>
+          <Link to="/pie-chart">Pie Chart</Link>
+        </li>
       </ul>
     </div>
   );

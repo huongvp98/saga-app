@@ -7,6 +7,9 @@ import Loadable from "react-loadable";
 function Loading() {
   return <div></div>;
 }
+function NotFound() {
+  return <h2>Not found</h2>;
+}
 function index(props) {
   const routers = [
     {
@@ -23,15 +26,22 @@ function index(props) {
         loading: Loading,
       }),
     },
+    {
+      path: ["/pie-chart"],
+      component: Loadable({
+        loader: () => import("@containers/pie-chart"),
+        loading: Loading,
+      }),
+    },
   ];
 
   return (
     <div className="container-app">
       <div className="row">
-        <div className="col-3">
+        <div className="col-2">
           <SideBar />
         </div>
-        <div className="col-9">
+        <div className="col-10">
           <Switch>
             {routers.map((route, key) => {
               if (route.component) {
@@ -48,6 +58,7 @@ function index(props) {
               }
               return null;
             })}
+            <Route path="*" component={NotFound}/>
           </Switch>
         </div>
       </div>
