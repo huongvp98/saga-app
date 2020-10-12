@@ -7,9 +7,9 @@ import Loadable from "react-loadable";
 function Loading() {
   return <div></div>;
 }
-function NotFound() {
-  return <h2>Not found</h2>;
-}
+// function NotFound() {
+//   return <h2>Not found</h2>;
+// }
 function index(props) {
   const routers = [
     {
@@ -58,7 +58,7 @@ function index(props) {
               }
               return null;
             })}
-            <Route path="*" component={NotFound}/>
+            {/* <Route path="*" component={NotFound}/> */}
           </Switch>
         </div>
       </div>
