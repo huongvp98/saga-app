@@ -2,6 +2,7 @@ import React from "react";
 import "antd/dist/antd.css";
 import Container from "@containers";
 import { BrowserRouter, Route, Switch } from "react-router-dom";
+import RouterWithPaths from "@components/RouterWithPaths";
 function NotFound() {
   return <h2>Not found</h2>;
 }
@@ -20,7 +21,7 @@ export default function Main(props) {
           {routers.map((route, key) => {
             if (route.component) {
               return (
-                <Route
+                <RouterWithPaths
                   key={key}
                   path={route.path}
                   exact

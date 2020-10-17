@@ -3,6 +3,7 @@ import { connect } from "react-redux";
 import bookAction from "@action/book";
 import { Button, Form, Input, Select } from "antd";
 import DataConstant from "@constant/data-constant";
+import ReactGA from "react-ga";
 const { TextArea } = Input;
 const { Option } = Select;
 function Main(props) {
@@ -23,48 +24,66 @@ function Main(props) {
       avatar: "",
       type: "",
     });
+    if (window.performance) {
+      let timeSinceLoadPage = Math.round(window.performance.now());
+      ReactGA.timing({
+        category: "Create Book",
+        variable: "load",
+        value: timeSinceLoadPage,
+        label: "Create libs",
+      });
+    }
   }, [updateBookState, createOrEdit]);
   const updateInfor = (e, action) => {
-    switch (action) {
-      case "name":
-        updateBookState({ name: e.target.value });
-        break;
-      case "description":
-        updateBookState({ description: e.target.value });
-        break;
-      case "author":
-        updateBookState({ author: e.target.value });
-        break;
-      case "type":
-        updateBookState({ type: e });
-        break;
-      case "avatar":
-        updateBookState({ avatar: e.target.value });
-        break;
-      default:
-        break;
-    }
+    updateBookState({ [action]: e });
   };
-  const onSubmit = () => {
-    try {
-      createOrEdit();
-    } catch (error) {}
+  const onSubmit = (x) => {
+    ReactGA.event({
+      category: "Create",
+      action: `Click create ${x}`,
+      label: "button",
+    });
+    createOrEdit();
+  };
+  const onShare = () => {
+    ReactGA.ga("send", {
+      hitType: "social",
+      socialNetwork: "Facebook",
+      socialAction: "like",
+      socialTarget: "/create",
+    });
+  };
+  const getId = () => {
+    let id;
+    ReactGA.ga(function (tracker) {
+      id = tracker.get("clientId");
+    });
+    return id;
   };
   return (
     <div>
       <Form layout="inline">
         <Form.Item label="Tên sách:">
-          <Input value={name} onChange={(e) => updateInfor(e, "name")} />
+          <Input
+            value={name}
+            onChange={(e) => updateInfor(e.target.value, "name")}
+          />
         </Form.Item>
         <Form.Item label="Tác giả">
-          <Input value={author} onChange={(e) => updateInfor(e, "author")} />
+          <Input
+            value={author}
+            onChange={(e) => updateInfor(e.target.value, "author")}
+          />
         </Form.Item>
         <Form.Item label="Link ảnh">
-          <Input onChange={(e) => updateInfor(e, "avatar")} value={avatar} />
+          <Input
+            onChange={(e) => updateInfor(e.target.value, "avatar")}
+            value={avatar}
+          />
         </Form.Item>
         <Form.Item label="Mô tả">
           <TextArea
-            onChange={(e) => updateInfor(e, "description")}
+            onChange={(e) => updateInfor(e.target.value, "description")}
             value={description}
           />
         </Form.Item>
@@ -84,9 +103,22 @@ function Main(props) {
             })}
           </Select>
         </Form.Item>
-        <Button type="primary" onClick={onSubmit}>
-          Thêm mới
+        <Button type="primary" onClick={() => onSubmit(1)}>
+          Thêm mới 1
         </Button>
+        <Button type="primary" onClick={() => onSubmit(2)}>
+          Thêm mới 2
+        </Button>
+        <ReactGA.OutboundLink
+          eventLabel="myLabel"
+          to="/home"
+          target="_blank"
+          trackerNames={["tracker2"]}
+        >
+          My Link
+        </ReactGA.OutboundLink>
+        <Button onClick={onShare}>Share</Button>
+        <div>clientId: {getId()}</div>
       </Form>
     </div>
   );

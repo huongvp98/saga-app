@@ -4,11 +4,20 @@ import * as am4charts from "@amcharts/amcharts4/charts";
 import am4themes_animated from "@amcharts/amcharts4/themes/animated";
 // import am4themes_material from "@amcharts/amcharts4/themes/material";
 import { Select } from "antd";
+// import ReactGA from "react-ga";
+import ReCAPTCHA from "react-google-recaptcha";
 am4core.useTheme(am4themes_animated);
 //CHANGE THEME
 // am4core.useTheme(am4themes_material);
 const { Option } = Select;
 function Chart(props) {
+  useEffect(() => {
+    // ReactGA.plugin.require("localHitSender", { path: "/log", debug: true });
+    // ReactGA.plugin.execute("ecommerce", "addTransaction", {
+    //   id: "jd38je31j",
+    //   revenue: "3.50",
+    // });
+  });
   const [chartType, setType] = useState(0);
   // const setColor = (chart) => {
   //   chart.colors.list = [
@@ -130,7 +139,20 @@ function Chart(props) {
     // });
   };
   useEffect(() => showChart());
-
+  const onChange = (value) => {
+    console.log("Captcha value:", value);
+  };
+  const reCaptcha2 = () => {
+    return (
+      <ReCAPTCHA
+        sitekey="6Lfo5tcZAAAAAGR5qXSfU7097BY1CMVHxTv2B3Bw"
+        onChange={onChange}
+        theme="dark"
+        size="normal"
+        //size: compact, normal or invisible
+      />
+    );
+  };
   return (
     <div>
       <Select
@@ -146,6 +168,7 @@ function Chart(props) {
         <Option value={50}>Donut Chart</Option>
       </Select>
       <div id="chartdiv" style={{ width: "100%", height: "400px" }}></div>
+      {reCaptcha2()}
     </div>
   );
 }
