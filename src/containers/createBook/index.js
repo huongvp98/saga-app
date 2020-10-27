@@ -4,6 +4,7 @@ import bookAction from "@action/book";
 import { Button, Form, Input, Select } from "antd";
 import DataConstant from "@constant/data-constant";
 import ReactGA from "react-ga";
+import Countdown from "react-countdown";
 const { TextArea } = Input;
 const { Option } = Select;
 function Main(props) {
@@ -15,6 +16,7 @@ function Main(props) {
     author,
     avatar,
     type,
+    isCount,
   } = props;
   useEffect(() => {
     updateBookState({
@@ -23,6 +25,7 @@ function Main(props) {
       author: "",
       avatar: "",
       type: "",
+      isCount: false,
     });
     if (window.performance) {
       let timeSinceLoadPage = Math.round(window.performance.now());
@@ -59,6 +62,19 @@ function Main(props) {
       id = tracker.get("clientId");
     });
     return id;
+  };
+  const renderer = ({ hours, minutes, seconds, completed }) => {
+    if (completed) {
+      // Render a completed state
+      return null;
+    } else {
+      // Render a countdown
+      return (
+        <span>
+          {minutes}:{seconds <= 9 ? "0" + seconds : seconds}
+        </span>
+      );
+    }
   };
   return (
     <div>
@@ -120,6 +136,12 @@ function Main(props) {
         <Button onClick={onShare}>Share</Button>
         <div>clientId: {getId()}</div>
       </Form>
+      <Button onClick={() => updateBookState({ isCount: !isCount })}>
+        CountDown
+      </Button>
+      {isCount ? (
+        <Countdown date={Date.now() + 5000} renderer={renderer} />
+      ) : null}
     </div>
   );
 }
@@ -130,6 +152,7 @@ const mapState = (state) => {
     author: state.bookReducer.author,
     avatar: state.bookReducer.avatar,
     type: state.bookReducer.type,
+    isCount: state.bookReducer.isCount,
   };
 };
 const mapDispatch = {

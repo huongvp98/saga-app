@@ -13,6 +13,9 @@ function index(props) {
         <li>
           <Link to="/pie-chart">Pie Chart</Link>
         </li>
+        <li>
+          <Link to="/login">Login</Link>
+        </li>
       </ul>
     </div>
   );
