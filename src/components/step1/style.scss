@@ -1,0 +1,25 @@
+.ant-slider-tooltip {
+  .ant-tooltip-content {
+    .ant-tooltip-inner {
+      background-color: #e9eef1;
+      box-shadow: none;
+      color: #3c5674;
+      font-size: 35px;
+      line-height: 42px;
+      font-family: Montserrat, sans-serif;
+      transform: translate(-75%, 31%);
+    }
+    .ant-tooltip-inner::after {
+      content: "%";
+    }
+    .ant-tooltip-arrow {
+      border: none;
+      border-radius: 2px;
+      border-left: 15px solid transparent;
+      border-right: 15px solid transparent;
+      border-top: 27px solid #3c5674;
+      left: 100%;
+      transform: translate(-65px, -5px);
+    }
+  }
+}

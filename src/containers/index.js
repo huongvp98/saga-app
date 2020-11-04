@@ -33,6 +33,7 @@ function index(props) {
         loading: Loading,
       }),
     },
+
   ];
 
   return (

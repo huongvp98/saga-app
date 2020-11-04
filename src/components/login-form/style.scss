@@ -1,0 +1,59 @@
+.warp-page {
+  // font-family: Muli, "Source Sans Pro" !important;
+  background: #f1fffe;
+  .header {
+    img {
+      display: block;
+      margin: auto;
+      padding-top: 77px;
+    }
+  }
+  .body {
+    margin-top: 73px;
+    padding-bottom: 218px;
+    .title-form {
+      font-weight: 900;
+      font-size: 42px;
+      color: #165974;
+      text-transform: uppercase;
+      text-align: center;
+    }
+    .form-login {
+      margin-top: 20px;
+      max-width: 805px;
+      margin: auto;
+      .fal {
+        font-size: 46px;
+        color: #125873;
+        margin-right: 11px;
+      }
+      .ant-input {
+        border-left: 2px solid #125873;
+        padding-left: 30px;
+        font-size: 29px;
+      }
+      .ant-input-affix-wrapper {
+        padding-top: 16px;
+        padding-bottom: 16px;
+        padding-left: 30px;
+        background: #fbffff;
+        box-shadow: 2px 2px 20px rgba(0, 0, 0, 0.1);
+        border-radius: 10px;
+      }
+      .button-form {
+        display: flex;
+        margin-top: 55px;
+        .ant-btn {
+          width: 340px;
+          height: 80px;
+          background: #fe5955;
+          border-radius: 10px;
+          font-size: 32px;
+          /* line-height: 40px; */
+          text-align: center;
+          color: #ffffff;
+        }
+      }
+    }
+  }
+}

@@ -5,6 +5,8 @@ import { BrowserRouter, Route, Switch } from "react-router-dom";
 import RouterWithPaths from "@components/RouterWithPaths";
 import Login from "@containers/login"
 import CreateCustomer from "@containers/create-customer"
+import LoginForm from "@components/login-form"
+import StepOne from "@components/step1"
 function NotFound() {
   return <h2>Not found</h2>;
 }
@@ -13,6 +15,14 @@ export default function Main(props) {
     {
       path: ["/login"],
       component: Login,
+    },
+    {
+      path: ["/login2"],
+      component: LoginForm,
+    },
+    {
+      path: ["/step1"],
+      component: StepOne,
     },
     {
       path: ["/create-customer"],
