@@ -7,6 +7,7 @@ import Login from "@containers/login"
 import CreateCustomer from "@containers/create-customer"
 import LoginForm from "@components/login-form"
 import StepOne from "@components/step1"
+import Component from "@components"
 function NotFound() {
   return <h2>Not found</h2>;
 }
@@ -25,8 +26,16 @@ export default function Main(props) {
       component: StepOne,
     },
     {
+      path: ["/component"],
+      component: Component,
+    },
+    {
       path: ["/create-customer"],
       component: CreateCustomer,
+    },
+    {
+      path: ["/component/:function1"],
+      component: Component,
     },
     {
       path: ["/", "/:function1", "/:function1/:id", "/:function1/:function2"],

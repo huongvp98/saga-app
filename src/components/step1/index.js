@@ -1,17 +1,16 @@
 import React, { useState } from 'react';
 import { Main, Service, Display } from './styled';
-import moment from 'moment';
+// import moment from 'moment';
 import 'moment/min/locales';
 import { Slider } from 'antd';
 import './style.scss';
-import Footer from "@components/footer"
 function Index(props) {
   const [stepPercent, setStepPercent] = useState(10);
-  const getDateVi = () => {
-    moment.locale('vi');
-    let dateNow = moment();
-    return dateNow.format('dddd, Do MMMM YYYY');
-  };
+  // const getDateVi = () => {
+  //   moment.locale('vi');
+  //   let dateNow = moment();
+  //   return dateNow.format('dddd, Do MMMM YYYY');
+  // };
   // var step = 10;
   // const getValue = (e) => {
   //   step = e;
@@ -33,31 +32,11 @@ function Index(props) {
   }
   return (
     <Main >
-      <div className="header">
-        <div className="logo-group">
-          <img
-            src={require('@components/images/step1/back-ground.png')}
-            className="back-ground-img"
-            alt=""
-          />
-          <img
-            src={require('@components/images/step1/Logo.png')}
-            className="logo"
-            alt=""
-          />
-        </div>
-        <div className="time-header">
-          <span>{moment().format('hh:ss')}</span>
-          <p>{getDateVi()}</p>
-        </div>
-      </div>
       <div className="body">
         <div className="input-slider">
           <Slider
-            // defaultValue={goNext ? 20 : 10}
             value={stepPercent}
             tooltipVisible
-          // onChange={(e) => getValue(e)}
           ></Slider>
           <div>
             <img
@@ -69,7 +48,7 @@ function Index(props) {
             </span>
           </div>
         </div>
-        <Display className="services" display={goNext}>
+        <Display className="services" isDisplay={goNext}>
           <Service onClick={haveSchedule} >
             <div className={toggle === 1 ? "active" : "inactive"}>
               <img
@@ -102,7 +81,7 @@ function Index(props) {
 
           </Service>
         </Display>
-        <Display className="services" display={!goNext}>
+        <Display className="services" isDisplay={!goNext}>
           <Service onClick={() => setToggle(3)} >
             <div className={toggle === 3 ? "active" : "inactive"}>
               <img
@@ -138,7 +117,6 @@ function Index(props) {
           <img src={require("@components/images/step1/Arrow-left-circle.png")} alt="" />
           <span>Quay lại</span>
         </div>
-        <Footer footerActive={{ key: 1 }} />
       </div>
     </Main>
   );

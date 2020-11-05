@@ -1,10 +1,12 @@
 import styled from "styled-components"
 import style from "styled-components"
 const Footer = style.div`
+background-color: #e9eef1;
+padding-bottom: 37px;
+.footer{
   margin: 0px 30px;
   box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.2), -3px -3px 10px #FFFFFF;
   border-radius: 100px;
-  margin-bottom: 37px;
     .footer-bar{
       background: #E9EDF0;
       display: flex;
@@ -20,7 +22,7 @@ const Footer = style.div`
             margin: auto;
         }
         span{
-          max-width: 166px;
+          max-width: 164px;
           display: inline-block;
         }
       }
@@ -65,6 +67,8 @@ const Footer = style.div`
         }
       }
     }
+}
+  
 `;
 const ColorDiv = styled.div`
   
